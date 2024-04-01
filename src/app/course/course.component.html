@@ -1,0 +1,61 @@
+<div  class="container course-table" >
+
+  <div class="headers">
+    <h2 class="table-title">Manage Courses</h2>
+    <button class="btn add"  (click) ="openForm(null,'S')">Add Course </button>
+
+  </div>
+  <table  class="table">
+    <thead>
+    <h1 *ngIf="!isResultLoaded"></h1>
+
+    <tr>
+      <th scope="col">Course Id</th>
+      <th scope="col">Course Name</th>
+
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor="let Course of CourseArray">
+      <td>{{Course.cid}}</td>
+      <td>{{Course.cname}}</td>
+
+      <td>
+        <button class="btn btn-primary" (click)="openForm(Course,'E')">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="setDelete(Course['cid'])" >Delete</button>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<ng-template >
+
+  <p class="text-danger">error fetching data</p>
+
+</ng-template>
+
+<div class="form-wrapper" *ngIf="showForm">
+  <div class="course-form">
+    <h2 class="text-info text-center"></h2>
+    <div class="group">
+      <label >Course Id</label>
+      <input type="text" class="form-control" [(ngModel)]="cid"   name="cid">
+    </div>
+    <div class="group">
+      <label >Course Name</label>
+      <input type="text" class="form-control" [(ngModel)]="cname"   name="cname" >
+    </div>
+
+    <div class="action">
+      <button class="btn btn-primary save" (click)="saveCourse()">Save</button>
+      <button class="btn btn-danger cancel" (click)="closeForm()">Cancel</button>
+    </div>
+
+  </div>
+</div>

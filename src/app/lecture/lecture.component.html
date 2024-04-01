@@ -1,0 +1,67 @@
+<div  class="container lecture-table" >
+
+  <div class="headers">
+    <h2 class="table-title">Manage Lectures</h2>
+    <button class="btn add"  (click) ="openForm(null,'S')">Add Lecture </button>
+
+  </div>
+  <table  class="table">
+    <thead>
+    <h1 *ngIf="!isResultLoaded"></h1>
+
+    <tr>
+      <th scope="col">Lecture Id</th>
+      <th scope="col">Lecture Name</th>
+      <th scope="col">Lecture Address</th>
+
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor="let Lecture of LectureArray">
+      <td>{{Lecture.lid}}</td>
+      <td>{{Lecture.lname}}</td>
+      <td>{{Lecture.laddress}}</td>
+
+      <td>
+        <button class="btn btn-primary" (click)="openForm(Lecture,'E')">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="setDelete(Lecture['lid'])" >Delete</button>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<ng-template >
+
+  <p class="text-danger">error fetching data</p>
+
+</ng-template>
+
+<div class="form-wrapper" *ngIf="showForm">
+  <div class="lecture-form">
+    <h2 class="text-info text-center"></h2>
+    <div class="group">
+      <label >Lecture Id</label>
+      <input type="text" class="form-control" [(ngModel)]="lid"   name="lid">
+    </div>
+    <div class="group">
+      <label >Lecture Name</label>
+      <input type="text" class="form-control" [(ngModel)]="lname"   name="lname" >
+    </div>
+    <div class="group">
+      <label >Lecture Address</label>
+      <input type="text" class="form-control" [(ngModel)]="laddress"   name="laddress" >
+    </div>
+
+    <div class="action">
+      <button class="btn btn-primary save" (click)="saveCourse()">Save</button>
+      <button class="btn btn-danger cancel" (click)="closeForm()">Cancel</button>
+    </div>
+
+  </div>
+</div>

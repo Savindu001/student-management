@@ -1,0 +1,62 @@
+
+<div  class="container module-table" >
+
+  <div class="headers">
+    <h2 class="table-title">Manage Modules</h2>
+    <button class="btn add"  (click) ="openForm(null,'S')">Add Module </button>
+
+  </div>
+  <table  class="table">
+    <thead>
+    <h1 *ngIf="!isResultLoaded"></h1>
+
+    <tr>
+      <th scope="col">Module Id</th>
+      <th scope="col">Module Name</th>
+
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor="let Module of ModuleArray">
+      <td>{{Module.mid}}</td>
+      <td>{{Module.mname}}</td>
+
+      <td>
+        <button class="btn btn-primary" (click)="openForm(Module,'E')">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="setDelete(Module['mid'])" >Delete</button>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<ng-template >
+
+  <p class="text-danger">error fetching data</p>
+
+</ng-template>
+
+<div class="form-wrapper" *ngIf="showForm">
+  <div class="module-form">
+    <h2 class="text-info text-center"></h2>
+    <div class="group">
+      <label >Module Id</label>
+      <input type="text" class="form-control" [(ngModel)]="mid"   name="mid">
+    </div>
+    <div class="group">
+      <label >Module Name</label>
+      <input type="text" class="form-control" [(ngModel)]="mname"   name="mname" >
+    </div>
+
+    <div class="action">
+      <button class="btn btn-primary save" (click)="saveCourse()">Save</button>
+      <button class="btn btn-danger cancel" (click)="closeForm()">Cancel</button>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div  class="container student-table" >
+
+  <div class="headers">
+    <h2 class="table-title">Manage Students</h2>
+    <button class="btn add"  (click) ="openForm(null,'S')">Add Student </button>
+
+  </div>
+  <table  class="table">
+    <thead>
+    <h1 *ngIf="!isResultLoaded"></h1>
+
+    <tr>
+      <th scope="col">Student Id</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Student Address</th>
+
+    </tr>
+    </thead>
+    <tbody class="text-center">
+    <tr *ngFor="let Student of StudentArray">
+      <td>{{Student.sid}}</td>
+      <td>{{Student.sname}}</td>
+      <td>{{Student.address}}</td>
+
+      <td>
+        <button class="btn btn-primary" (click)="openForm(Student,'E')">Edit</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="setDelete(Student['sid'])" >Delete</button>
+      </td>
+
+    </tr>
+
+    </tbody>
+  </table>
+
+</div>
+
+<ng-template >
+
+  <p class="text-danger">error fetching data</p>
+
+</ng-template>
+
+<div class="form-wrapper" *ngIf="showForm">
+  <div class="student-form">
+    <h2 class="text-info text-center"></h2>
+    <div class="group">
+      <label >Student Id</label>
+      <input type="text" class="form-control" [(ngModel)]="sid"   name="sid">
+    </div>
+    <div class="group">
+      <label >Student Name</label>
+      <input type="text" class="form-control" [(ngModel)]="sname"   name="sname" >
+    </div>
+    <div class="group">
+      <label >Student Address</label>
+      <input type="text" class="form-control" [(ngModel)]="address"   name="address" >
+    </div>
+
+    <div class="action">
+      <button class="btn btn-primary save" (click)="saveCourse()">Save</button>
+      <button class="btn btn-danger cancel" (click)="closeForm()">Cancel</button>
+    </div>
+
+  </div>
+</div>
